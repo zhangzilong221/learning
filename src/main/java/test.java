@@ -6,7 +6,7 @@ public class test {
         System.out.println("是R");
 
         String asdfe = new String();
-
+        System.out.println("asdfe = " + asdfe);
 
 
 
