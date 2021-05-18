@@ -17,8 +17,7 @@ public class ThreadPoolExecutorUtil {
      * 自定义线程池
      */
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(CORE_SIZE, CORE_SIZE, 0L, TimeUnit.MILLISECONDS,
-            new LinkedBlockingQueue<>(), new MrmThreadPoolFactory());
-
+            new LinkedBlockingQueue<>(), new MrmThreadPoolFactory(),new ThreadPoolExecutor.AbortPolicy());
     /**
      * 提交任务 无返回值
      * 使用get方法
@@ -46,18 +45,20 @@ public class ThreadPoolExecutorUtil {
         private ThreadGroup group;
         private String namePrefix;
         private AtomicInteger nextId = new AtomicInteger();
-
         MrmThreadPoolFactory() {
             SecurityManager s = System.getSecurityManager();
             group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
             namePrefix = "mrm-task-";
+
         }
 
         @Override
         public Thread newThread(@NotNull Runnable r) {
+
             Thread t = new Thread(group, r, namePrefix + nextId.getAndIncrement());
             t.setDaemon(false);
             return t;
         }
+
     }
 }
