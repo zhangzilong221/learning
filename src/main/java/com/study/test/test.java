@@ -1,3 +1,5 @@
+package com.study.test;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
     public class test {

@@ -1,6 +1,5 @@
-import com.sun.corba.se.spi.orbutil.threadpool.ThreadPool;
+package com.study.test;
 
-import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ThreadPoolTest {
